@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 200">
+  <rect x="2" y="2" width="56" height="196" fill="none" stroke="#333" stroke-width="1.2"/>
+  <!-- gorge verticale arrondie côté droit : trait légèrement incurvé -->
+  <!--  <path d="M 50 2 Q 54 101 50 198" fill="none" stroke="#333" stroke-width="0.8"/>-->
+  <path d="M 53 198 l 0 -100 q -0 -5 5 -5" stroke="#333" stroke-width="0.8" fill="none" />
+</svg>

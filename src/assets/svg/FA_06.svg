@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 200">
+  <rect x="2" y="2" width="56" height="196" fill="none" stroke="#333" stroke-width="1.2"/>
+  <!-- gorge rectangulaire centrée verticalement -->
+  <path d="M 58 105 l -6 0 q -2 -0 -2 -2 l 0 -6 q 0 -2 2 -2 l 6 0" stroke="#333" fill="none" stroke-width="0.8"/>
+</svg>

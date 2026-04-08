@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:colora.be)",
+      "WebFetch(domain:www.colora.nl)",
+      "WebFetch(domain:www.verf-plaza.nl)"
+    ]
+  }
+}
