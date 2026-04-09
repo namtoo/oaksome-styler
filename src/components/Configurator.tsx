@@ -263,16 +263,21 @@ function CircleOption({
 
 // ─── Moodboard ────────────────────────────────────────────────────────────────
 
+const LENS_SIZE = 100   // px diameter of the magnifier circle
+const LENS_ZOOM = 2.5   // zoom factor inside the lens
+
 function MoodCard({
                       item,
                       size,
                       role,
                       imgFocus,
+                      zoomLens,
                   }: {
     item: OptionItem | undefined
     size: 'lg' | 'md' | 'sm' | 'fr'
     role: string
     imgFocus?: ImgFocus
+    zoomLens?: boolean
 }) {
     const hexColor = item ? getHexColor(item) : null
     const img = item && !hexColor ? getItemImage(item) : null
@@ -282,8 +287,33 @@ function MoodCard({
         objectFit: imgFocus.objectFit as React.CSSProperties['objectFit'],
     } : undefined
 
+    const [lens, setLens] = useState<{x: number; y: number; w: number; h: number} | null>(null)
+    const cardRef = React.useRef<HTMLDivElement>(null)
+
+    function handleMouseMove(e: React.MouseEvent) {
+        if (!zoomLens || !img || !cardRef.current) return
+        const rect = cardRef.current.getBoundingClientRect()
+        setLens({ x: e.clientX - rect.left, y: e.clientY - rect.top, w: rect.width, h: rect.height })
+    }
+
+    // Render a scaled-up clone of the card inside the lens.
+    // The img is positioned so the cursor point maps to the lens center.
+    const lensImgStyle: React.CSSProperties | undefined = lens ? {
+        position: 'absolute',
+        width:  lens.w * LENS_ZOOM,
+        height: lens.h * LENS_ZOOM,
+        left: -(lens.x * LENS_ZOOM - LENS_SIZE / 2),
+        top:  -(lens.y * LENS_ZOOM - LENS_SIZE / 2),
+        objectFit: 'contain',
+    } : undefined
+
     return (
-        <div className={`mood-card mood-card--${size}`}>
+        <div
+            ref={cardRef}
+            className={`mood-card mood-card--${size}`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setLens(null)}
+        >
             <div className="mood-card-visual">
                 {hexColor ? (
                     <div className="mood-card-color" style={{background: `#${hexColor}`}}/>
@@ -293,6 +323,11 @@ function MoodCard({
                     <div className="mood-card-empty"/>
                 )}
             </div>
+            {lens && img && (
+                <div className="mood-lens" style={{ left: lens.x - LENS_SIZE / 2, top: lens.y - LENS_SIZE / 2 }}>
+                    <img src={img} alt="" style={lensImgStyle} />
+                </div>
+            )}
             <div className="mood-card-info">
                 <span className="mood-card-role">{role}</span>
                 {item && <span className="mood-card-label">{item.label}</span>}
@@ -314,7 +349,7 @@ function MoodBoard({
 }) {
     return (
         <div className="moodboard">
-            <MoodCard item={frontItem} size="fr" role="Front" imgFocus={FRONT_IMG_FOCUS}/>
+            <MoodCard item={frontItem} size="fr" role="Front" imgFocus={FRONT_IMG_FOCUS} zoomLens/>
             <MoodCard item={intItem} size="md" role="Interior"/>
             <MoodCard item={pullItem} size="sm" role="Pull" imgFocus={PULL_IMG_FOCUS}/>
             <MoodCard item={extItem} size="lg" role="Exterior"/>
