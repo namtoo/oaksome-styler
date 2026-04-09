@@ -2,7 +2,7 @@
 
 .configurator {
   /*max-width: 1200px;*/
-  width: 120%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px 48px;
   text-align: left;
@@ -58,7 +58,7 @@
 /* LG and MD are flex items that overlap each other directly */
 .mood-card--sm { box-shadow: none }
 .mood-card--lg { width: 240px; height: 240px; z-index: 2; margin-top: 80px; margin-left: -80px }
-.mood-card--md { width: 180px; height: 180px; z-index: 2; margin-top: 0; margin-left: 0; }
+.mood-card--md { width: 180px; height: 180px; z-index: 2; margin-top: 0; margin-left: -40px; }
 .mood-card--fr { width: 240px; height: 440px; z-index: 2; margin-top: 0; margin-left: 0; box-shadow: none}
 
 /* SM is pulled out of flex flow and floats in the overlap zone between LG and MD */
