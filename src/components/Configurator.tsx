@@ -123,7 +123,7 @@ const FRONT_IMG_FOCUS = {
 // ─── Pull image focus — adjust these to frame the pull inside the PNG ─────────
 const PULL_IMG_FOCUS = {
     scale: 4.5,       // zoom factor  (1 = no zoom)
-    x: '70%',         // horizontal center of interest
+    x: '73%',         // horizontal center of interest
     y: '30%',         // vertical center of interest (lower % = higher in image)
 }
 
