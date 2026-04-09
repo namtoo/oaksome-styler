@@ -28,7 +28,7 @@
 .configurator-body {
   padding: 0 24px;
   overflow-y: auto;
-  height: 70vh;
+  height: 74vh;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -408,7 +408,7 @@
 /* ── Summary Footer ───────────────────────────────────────────────────────── */
 
 .configurator-summary {
-  margin-top: 48px;
+  margin-top: 0;
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -425,7 +425,7 @@
 .summary-grid {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 6px 16px;
+  gap: 2px 16px;
   margin: 0;
 }
 
